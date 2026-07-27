@@ -157,12 +157,12 @@ def cmd_run(args):
         elif mod == "osint":
             results["osint"] = _run_osint(eng["target"])
         elif mod == "vuln":
-            results["vuln"] = _run_vuln(eng["target"])
+            results["vuln"] = _run_vuln(eng["target"], recon_data=results.get("recon"), web_data=results.get("web"))
         elif mod == "all":
             results["recon"] = _run_recon(eng["target"], eng.get("device_count", 1))
             results["web"] = _run_web(eng["target"])
             results["osint"] = _run_osint(eng["target"])
-            results["vuln"] = _run_vuln(eng["target"])
+            results["vuln"] = _run_vuln(eng["target"], recon_data=results.get("recon"), web_data=results.get("web"))
         else:
             print(f"  {YELLOW}![RESET] Unknown module: {mod} (use: recon, web, osint, vuln, all)")
             continue
@@ -265,13 +265,22 @@ def _run_osint(target):
     return results
 
 
-def _run_vuln(target):
+def _run_vuln(target, recon_data=None, web_data=None):
     try:
         from recon.vuln_scan import run_vuln_scan
     except ImportError:
         from .recon.vuln_scan import run_vuln_scan
     print(f"\n  {CYAN}*{RESET} Running vulnerability scan on: {BOLD}{target}{RESET}")
-    results = run_vuln_scan(target)
+    results = run_vuln_scan(target, recon_data=recon_data, web_data=web_data)
+
+    # Enrich findings with CVE data from NVD API
+    try:
+        from recon.cve_engine import enrich_with_cve
+        enriched = enrich_with_cve(results.get("findings", []))
+        results["findings"] = enriched
+    except Exception:
+        pass
+
     return results
 
 
@@ -304,11 +313,11 @@ def cmd_help(args):
     {CYAN}python main.py report ENG-240101-ABC123{RESET}
 
 {BOLD}MODULES:{RESET}
-{DIM}recon{RESET}    Port scan, web services, DNS enumeration, SSL check, host discovery
-{DIM}web{RESET}       Web vulnerability detection (headers, tech fingerprint, info disclosure)
-{DIM}osint{RESET}      Domain public info, email footprint, WHOIS lookup
-{DIM}vuln{RESET}       Vulnerability detection across all scanned services
-{DIM}all{RESET}        Run every module (recon + web + osint + vuln)
+{DIM}recon{RESET}    Port scan, web services, DNS enumeration, SSL check, subdomain discovery, version detection
+{DIM}web{RESET}       Web vuln detection — headers, cookies, CORS, redirects, robots.txt, tech fingerprinting
+{DIM}osint{RESET}      Domain public info, email footprint, WHOIS lookup, DNS, social media
+{DIM}vuln{RESET}       Vulnerability detection across all services — CVE matching, version-specific vulns
+{DIM}all{RESET}        Run every module (recon + web + osint + vuln with CVE enrichment)
 
 {BOLD}OPTIONS:{RESET}
   --service <type>     micro | smallbiz | pentest (default: micro)

@@ -68,6 +68,40 @@ class WebScanner:
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36",
     ]
 
+    # Expanded known technologies with version detection
+    TECH_SIGNATURES = {
+        "WordPress": {"patterns": ["wp-content", "wp-login", "wp-includes", "wp-json"], "ver_patterns": ["WordPress ([\d.]+)", "ver=[\d.]+"]},
+        "Joomla": {"patterns": ["administrator", "Joomla", "com_content"]},
+        "Drupal": {"patterns": ["sites/default", "drupal", "sites/all"]},
+        "Apache": {"patterns": ["Apache", "Server: Apache"], "ver_patterns": ["Apache/([\d.]+)"]},
+        "Nginx": {"patterns": ["nginx", "Server: nginx"], "ver_patterns": ["nginx/([\d.]+)", "Server: nginx/([\d.]+)"]},
+        "IIS": {"patterns": ["Microsoft-IIS", "X-Powered-By: ASP.NET"], "ver_patterns": ["IIS/([\d.]+)", "X-AspNet-Version: ([\d.]+)"]},
+        "PHP": {"patterns": ["X-Powered-By: PHP"], "ver_patterns": ["PHP/([\d.]+)", "X-Powered-By: PHP/([\d.]+)"]},
+        "Tomcat": {"patterns": ["Apache-Coyote", "tomcat"], "ver_patterns": ["Apache-Coyote/([\d.]+)", "Server: Apache Tomcat/([\d.]+)"]},
+        "Django": {"patterns": ["csrfmiddlewaretoken", "Django"], "ver_patterns": ["Django ([\d.]+)"]},
+        "Laravel": {"patterns": ["laravel_session", "X-Powered-By: PHP"]},
+        "Rails": {"patterns": ["_rails_session", "actionpack"]},
+        "Express": {"patterns": ["X-Powered-By: Express"]},
+        "Cloudflare": {"patterns": ["CF-Ray", "cloudflare", "cf-cache-status"]},
+        "jQuery": {"patterns": ["jquery"], "ver_patterns": ["jquery(?:-([\d.]+))?"]},
+        "React": {"patterns": ["react", "__NEXT_DATA__", "react-dom"]},
+        "Vue": {"patterns": ["__vue__", "nuxt"]},
+        "Next.js": {"patterns": ["_next/static", "next.js"]},
+        "Bootstrap": {"patterns": ["bootstrap", "bootstrap.css"]},
+        "ASP.NET": {"patterns": ["ASP.NET", ".aspx"]},
+        "Go": {"patterns": ["Gin", "Echo Framework", "Gorilla"]},
+        "Ruby": {"patterns": ["Puma", "Thin", "Unicorn"]},
+        "Node.js": {"patterns": ["node"]},
+    }
+
+    # Version ranges for version-specific vulnerabilities
+    VULNERABLE_VERSIONS = {
+        "WordPress": [("6.5", "6.5.3"), ("6.4", "6.4.3"), ("6.3", "6.3.2"), ("6.2", "6.2.3")],
+        "PHP": [("8.0", "8.0.30"), ("7.4", "7.4.33"), ("7.3", "7.3.33")],
+        "Apache": [("2.4", "2.4.54"), ("2.4.49", "2.4.49")],
+        "Nginx": [("1.18", "1.18.0"), ("1.20", "1.20.1")],
+    }
+
     def __init__(self, target, ports=None, timeout=3.0):
         self.target = target
         self.ports = ports or [80, 443, 8080, 8443, 8888, 3000, 5000, 9000]
@@ -126,9 +160,23 @@ class WebScanner:
             for scheme in schemes:
                 base = f"{scheme}://{self.target}:{port}"
                 urls.add(base)
-                # Only probe common vulnerability paths on the main page
+
+                # Standard vulnerability paths
                 for path in ["/.env", "/.git/config", "/wp-config.php", "/phpinfo.php",
-                             "/.well-known/security.txt", "/server-status", "/actuator/health"]:
+                             "/.well-known/security.txt", "/server-status", "/actuator/health",
+                             "/robots.txt", "/sitemap.xml", "/.well-known/cpanel",
+                             "/.well-known/acme-challenge", "/crossdomain.xml",
+                             "/clientaccesspolicy.xml", "/server-info", "/server-status"]:
+                    urls.add(f"{base}{path}")
+
+                # CMS-specific paths
+                for path in ["/wp-login.php", "/wp-admin/", "/wp-content/plugins/",
+                             "/administrator/", "/modules/", "/user/login",
+                             "/cgi-bin/", "/cgi-bin/test-cgi",
+                             "/config.php", "/configuration.php", "/settings.php",
+                             "/debug/vars", "/health", "/ping",
+                             "/api/", "/graphql", "/swagger.json", "/api-docs",
+                             "/.htaccess", "/web.config"]:
                     urls.add(f"{base}{path}")
 
         return sorted(urls)
@@ -139,15 +187,22 @@ class WebScanner:
                            headers={"User-Agent": self.USER_AGENTS[0]})
 
             findings = self._analyze_endpoint(r, url)
+            advanced = self._analyze_advanced(r, url)
 
             return {
                 "url": url,
                 "status_code": r.status_code,
                 "server": r.headers.get("Server", "Unknown"),
                 "technologies": findings["technologies"],
+                "technology_versions": findings.get("technology_versions", {}),
                 "missing_headers": findings["missing_headers"],
                 "info_disclosure": findings["info_disclosure"],
                 "security_findings": findings["security_findings"],
+                "cookie_issues": advanced.get("cookie_issues", []),
+                "cors_issues": advanced.get("cors_issues", []),
+                "robots_info": advanced.get("robots_info", None),
+                "redirect_issues": advanced.get("redirect_issues", []),
+                "tls_config": advanced.get("tls_config", None),
                 "headers": {k: v for k, v in r.headers.items() if k.lower() not in ["set-cookie", "x-powered-by"]},
             }
         except:
@@ -262,6 +317,210 @@ class WebScanner:
 
         return findings
 
+    def _analyze_advanced(self, response, url):
+        """Advanced security analysis: cookies, CORS, redirects, TLS config."""
+        result = {
+            "cookie_issues": [],
+            "cors_issues": [],
+            "robots_info": None,
+            "redirect_issues": [],
+            "tls_config": None,
+        }
+
+        # === Cookie Security Analysis ===
+        cookies = response.cookies
+        for cookie in cookies:
+            issues = []
+
+            if not cookie.secure:
+                issues.append("Cookie without Secure flag")
+
+            if cookie.expires is None:
+                issues.append("Session cookie without expiration (session cookie)")
+
+            if not cookie.get("samesite", cookie.get("samesite", "")).lower() in ("strict", "lax"):
+                issues.append("Cookie without SameSite attribute")
+
+            if not cookie.get("httponly", cookie.get("httponly", False)):
+                issues.append("Cookie without HttpOnly flag")
+
+            if issues:
+                result["cookie_issues"].append({
+                    "name": cookie.name,
+                    "issues": issues,
+                    "severity": "HIGH" if len(issues) >= 2 else "MEDIUM",
+                    "detail": f"Cookie '{cookie.name}' has security issues: {'; '.join(issues)}",
+                    "remediation": "Add Secure, HttpOnly, SameSite=Strict attributes to all cookies"
+                })
+
+        # === CORS Analysis ===
+        acac = response.headers.get("Access-Control-Allow-Origin", "")
+        acam = response.headers.get("Access-Control-Allow-Methods", "")
+        acah = response.headers.get("Access-Control-Allow-Headers", "")
+        acac_creds = response.headers.get("Access-Control-Allow-Credentials", "").lower()
+
+        if acac:
+            if acac == "*":
+                result["cors_issues"].append({
+                    "severity": "HIGH",
+                    "title": "Wildcard CORS Policy",
+                    "detail": f"Access-Control-Allow-Origin is set to '*'",
+                    "remediation": "Restrict Access-Control-Allow-Origin to specific trusted domains. Use: Access-Control-Allow-Origin: https://example.com"
+                })
+
+            if acac_creds == "true" and "*" not in acac:
+                result["cors_issues"].append({
+                    "severity": "MEDIUM",
+                    "title": "CORS with Credentials Allowed",
+                    "detail": "CORS allows credentials but origin is not fully validated",
+                    "remediation": "Ensure Access-Control-Allow-Origin matches exactly the requesting origin, not a wildcard"
+                })
+
+            if acac_creds == "true" and acac == "*":
+                result["cors_issues"].append({
+                    "severity": "CRITICAL",
+                    "title": "CORS Wildcard + Credentials",
+                    "detail": "CORS allows any origin with credentials — allows any site to make authenticated requests",
+                    "remediation": "CRITICAL: Remove wildcard CORS when credentials are allowed. Set specific allowed origins only."
+                })
+
+            if acam:
+                methods = [m.strip().upper() for m in acam.split(",")]
+                dangerous = ["PUT", "DELETE", "PATCH", "TRACE", "OPTIONS"]
+                found_dangerous = [m for m in methods if m in dangerous]
+                if found_dangerous:
+                    result["cors_issues"].append({
+                        "severity": "MEDIUM",
+                        "title": "Dangerous HTTP Methods Allowed via CORS",
+                        "detail": f"CORS allows dangerous methods: {', '.join(found_dangerous)}",
+                        "remediation": f"Restrict CORS to necessary methods only (GET, POST). Remove: {', '.join(found_dangerous)}"
+                    })
+
+        # === Open Redirect Detection ===
+        # Check for redirect behavior
+        if response.history:
+            for h in response.history:
+                location = h.headers.get("Location", "")
+                if location and ("redirect" in location.lower() or location.startswith("http")):
+                    if self._is_open_redirect(location):
+                        result["redirect_issues"].append({
+                            "severity": "MEDIUM",
+                            "title": "Open Redirect Detected",
+                            "detail": f"URL redirects to external site: {location}",
+                            "remediation": "Implement allowlist for redirect destinations. Validate against trusted domains."
+                        })
+
+        # Also check for redirect parameters in query strings
+        if any(param in url.lower() for param in ["redirect", "next", "return", "goto", "url", "dest", "redirect_to", "continue"]):
+            if response.status_code in (301, 302, 303, 307, 308):
+                location = response.headers.get("Location", "")
+                if location and "http" in location.lower():
+                    if self._is_open_redirect(location):
+                        result["redirect_issues"].append({
+                            "severity": "MEDIUM",
+                            "title": "Redirect Parameter Exposure",
+                            "detail": f"URL has redirect parameter that resolves to: {location}",
+                            "remediation": "Validate redirect destinations against allowed domains. Avoid storing URLs in query parameters."
+                        })
+
+        # === robots.txt Analysis ===
+        robots_url = url.rsplit("/", 1)[0] + "/robots.txt"
+        if "http://" in robots_url or "https://" in robots_url:
+            # Already a full URL
+            base_url = robots_url
+        else:
+            base_url = f"https://{url.split('://')[1]}/robots.txt" if url.startswith("https://") else f"http://{url.split('://')[1]}/robots.txt"
+
+        try:
+            robots_resp = requests.get(base_url, timeout=2, verify=False)
+            if robots_resp.status_code == 200:
+                robots_text = robots_resp.text
+                # Parse disallowed paths
+                disallowed = []
+                for line in robots_text.splitlines():
+                    if line.strip().lower().startswith("disallow:"):
+                        path = line.split(":", 1)[1].strip()
+                        if path and path != "/":
+                            disallowed.append(path)
+
+                if disallowed:
+                    result["robots_info"] = {
+                        "disallowed_paths": disallowed,
+                        "user_agent": "Bot",
+                        "total_paths": len(disallowed),
+                    }
+        except:
+            pass
+
+        # === TLS/HTTPS Configuration (on main page) ===
+        if url.startswith("https://") and response.url.endswith("/"):
+            try:
+                import ssl
+                import socket
+                hostname = response.url.split("://")[1].split("/")[0].split(":")[0]
+                ctx = ssl.create_default_context()
+                ctx.check_hostname = False
+                ctx.verify_mode = ssl.CERT_NONE
+
+                with socket.create_connection((hostname, 443), timeout=3) as sock:
+                    with ctx.wrap_socket(sock, server_hostname=hostname) as ss:
+                        cert = ss.getpeercert()
+                        cipher_info = ss.cipher()
+                        proto_version = ss.version()
+
+                tls_config = {
+                    "protocol": proto_version or "unknown",
+                    "cipher": cipher_info[0] if cipher_info else "unknown",
+                    "cert_subject": "",
+                    "cert_issuer": "",
+                    "cert_san": [],
+                }
+
+                subject = dict(x[0] for x in cert.get("subject", []))
+                tls_config["cert_subject"] = subject.get("commonName", "")
+
+                try:
+                    issuer = dict(x[0] for x in cert.get("issuer", []))
+                    tls_config["cert_issuer"] = issuer.get("organizationName", "")
+                except:
+                    pass
+
+                san_list = cert.get("subjectAltName", [])
+                tls_config["cert_san"] = [v for _, v in san_list]
+
+                # Check for TLS issues
+                issues = []
+                if proto_version and proto_version in ("TLSv1", "TLSv1.1"):
+                    issues.append(f"Deprecated TLS version: {proto_version}")
+                if cipher_info:
+                    for weak in ["RC4", "DES", "MD5", "EXPORT", "NULL"]:
+                        if weak in cipher_info[0].upper():
+                            issues.append(f"Weak cipher: {cipher_info[0]}")
+                            break
+
+                if issues:
+                    tls_config["issues"] = issues
+
+                result["tls_config"] = tls_config
+            except:
+                pass
+
+        return result
+
+    def _is_open_redirect(self, url):
+        """Check if a redirect URL is an open redirect to an external domain."""
+        if not url:
+            return False
+        # Simple check: if URL points to a different domain than the target
+        try:
+            from urllib.parse import urlparse
+            parsed = urlparse(url)
+            if parsed.netloc:
+                return parsed.scheme in ("http", "https") and parsed.netloc != self.target
+        except:
+            pass
+        return False
+
     def _analyze_findings(self):
         all_findings = []
 
@@ -285,6 +544,58 @@ class WebScanner:
                     "detail": id_["issue"],
                     "url": ep["url"]
                 })
+
+            # Cookie issues
+            for ci in ep.get("cookie_issues", []):
+                all_findings.append({
+                    "severity": ci.get("severity", "MEDIUM"),
+                    "title": f"Insecure Cookie: {ci.get('name', 'unknown')}",
+                    "detail": ci.get("detail", ""),
+                    "remediation": ci.get("remediation", ""),
+                    "url": ep.get("url", "")
+                })
+
+            # CORS issues
+            for cci in ep.get("cors_issues", []):
+                all_findings.append({
+                    "severity": cci.get("severity", "MEDIUM"),
+                    "title": cci.get("title", "CORS Misconfiguration"),
+                    "detail": cci.get("detail", ""),
+                    "remediation": cci.get("remediation", ""),
+                    "url": ep.get("url", "")
+                })
+
+            # Redirect issues
+            for ri in ep.get("redirect_issues", []):
+                all_findings.append({
+                    "severity": ri.get("severity", "MEDIUM"),
+                    "title": ri.get("title", "Open Redirect"),
+                    "detail": ri.get("detail", ""),
+                    "remediation": ri.get("remediation", ""),
+                    "url": ep.get("url", "")
+                })
+
+            # Robots.txt findings — hidden paths exposed
+            robots = ep.get("robots_info")
+            if robots:
+                all_findings.append({
+                    "severity": "INFO",
+                    "title": f"robots.txt disclosure ({robots.get('total_paths', 0)} paths)",
+                    "detail": f"robots.txt reveals {robots['total_paths']} disallowed paths: {', '.join(robots['disallowed_paths'][:5])}",
+                    "url": ep.get("url", "")
+                })
+
+            # TLS config findings
+            tls = ep.get("tls_config")
+            if tls and tls.get("issues"):
+                for issue in tls["issues"]:
+                    all_findings.append({
+                        "severity": "MEDIUM",
+                        "title": f"TLS Issue: {issue}",
+                        "detail": f"TLS configuration issue detected",
+                        "remediation": "Upgrade TLS configuration to use TLSv1.2+ with strong ciphers only",
+                        "url": ep.get("url", "")
+                    })
 
         return {"findings": all_findings}
 

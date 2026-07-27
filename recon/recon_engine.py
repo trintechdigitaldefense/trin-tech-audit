@@ -92,11 +92,18 @@ class ServiceDetector:
         995: b"LOGOUT\r\n",
     }
 
+    # HTTP-specific version detection probes
+    HTTP_PROBES = {
+        "curl_version": ["curl", "--version"],
+        "curl_banner": ["curl", "-s", "-I", "-H", "User-Agent: TrinTech/1.0"],
+    }
+
     def __init__(self, target, ports, timeout=3.0):
         self.target = target
         self.ports = ports
         self.timeout = timeout
         self.banners = {}
+        self.versions = {}  # port -> software version
 
     def grab(self):
         print(f"  {CYAN}*{RESET} Grabbing service banners...")
@@ -111,7 +118,104 @@ class ServiceDetector:
         for port, banner in self.banners.items():
             print(f"    {GREEN}>{RESET} :{port:<6} {DIM}{banner[:80]}{RESET}")
 
+        # Now do deep version detection for HTTP services
+        self._detect_versions()
+
+        if self.versions:
+            print(f"  {CYAN}*{RESET} {BOLD}Version Detection:{RESET}")
+            for port, ver in self.versions.items():
+                software, version = ver
+                print(f"    {GREEN}>{RESET} :{port:<6} {CYAN}{software}{RESET} {YELLOW}{version}{RESET}")
+
         return self.banners
+
+    def _detect_versions(self):
+        """Use curl to detect software versions on HTTP services."""
+        http_ports = [p for p in self.ports if p in (80, 443, 8080, 8443, 8888, 3000, 5000)]
+
+        if not http_ports:
+            return
+
+        for port in http_ports:
+            try:
+                schemes = ["https", "http"] if port == 443 else ["http"]
+                for scheme in schemes:
+                    url = f"{scheme}://{self.target}:{port}"
+                    try:
+                        r = subprocess.run(
+                            ["curl", "-s", "-I", "-L", "--max-time", "3",
+                             "-H", "User-Agent: TrinTech/1.0", url],
+                            capture_output=True, text=True, timeout=5
+                        )
+                        if r.returncode == 0 and r.stdout:
+                            headers = r.stdout
+
+                            # Extract Server header version
+                            for line in headers.split("\n"):
+                                if line.lower().startswith("server:"):
+                                    server_line = line.split(":", 1)[1].strip()
+                                    # Try to extract version from server string
+                                    import re
+                                    version_match = re.search(r'/([\d.]+(?:[-._\d]*\d)?)', server_line)
+                                    if version_match:
+                                        software = server_line.split("/")[0]
+                                        version = version_match.group(1)
+                                        self.versions[port] = (software, version)
+                                    else:
+                                        self.versions[port] = (server_line, "unknown")
+
+                            # Extract X-Powered-By version
+                            for line in headers.split("\n"):
+                                if line.lower().startswith("x-powered-by:"):
+                                    powered = line.split(":", 1)[1].strip()
+                                    if "PHP/" in powered:
+                                        ver = powered.split("PHP/")[1].strip()
+                                        if port not in self.versions:
+                                            self.versions[port] = ("PHP", ver)
+                                    elif "Express" in powered:
+                                        ver = powered.split("Express/")[1].strip()
+                                        if port not in self.versions:
+                                            self.versions[port] = ("Express", ver)
+                                    elif "ASP.NET" in powered:
+                                        ver = powered.split("ASP.NET")[1].strip().lstrip(":").strip()
+                                        if port not in self.versions:
+                                            self.versions[port] = ("ASP.NET", ver)
+
+                            # Try to get content version from HTML body
+                            r_body = subprocess.run(
+                                ["curl", "-s", "-L", "--max-time", "3",
+                                 "-H", "User-Agent: TrinTech/1.0", url],
+                                capture_output=True, text=True, timeout=5
+                            )
+                            if r_body.returncode == 0 and r_body.stdout:
+                                body = r_body.stdout
+
+                                # WordPress version detection
+                                wp_match = re.search(r'WordPress ([\d.]+)', body)
+                                if wp_match and port not in self.versions:
+                                    self.versions[port] = ("WordPress", wp_match.group(1))
+
+                                # Joomla version
+                                joomla_match = re.search(r'content="Joomla!(\s*([\d.]+))? "', body)
+                                if joomla_match and port not in self.versions:
+                                    self.versions[port] = ("Joomla", joomla_match.group(2) or "unknown")
+
+                                # Drupal version
+                                drupal_match = re.search(r'jQuery.drupal\.([\d.]+)', body)
+                                if drupal_match and port not in self.versions:
+                                    self.versions[port] = ("Drupal", drupal_match.group(1))
+
+                                # React version from __NEXT_DATA__ or meta tags
+                                react_match = re.search(r'<meta[^>]*name="generator"[^>]*content="([^"]*React[^"]*)"', body)
+                                if react_match and port not in self.versions:
+                                    self.versions[port] = ("React", react_match.group(1))
+
+                            break  # Only need one successful response per port
+                    except Exception:
+                        continue
+
+            except Exception:
+                continue
 
     def _grab_port(self, port):
         try:
@@ -320,10 +424,12 @@ def run_recon(target):
     ports = scanner.scan()
     data["modules"]["ports"] = ports
 
-    # 3. Service banner grabbing
+    # 3. Service banner grabbing + version detection
     banner_module = ServiceDetector(target, [p["port"] for p in ports], timeout=3.0)
     banners = banner_module.grab()
+    versions = banner_module.versions  # port -> (software, version)
     data["modules"]["banners"] = banners
+    data["modules"]["versions"] = {str(k): v for k, v in versions.items()}
 
     # 4. DNS enumeration
     dns_module = DNSModule(target)
