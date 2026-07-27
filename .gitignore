@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
 venv/
-data/engagements.json
-reports/*.pdf
-reports/*.json
+data/
+reports/
