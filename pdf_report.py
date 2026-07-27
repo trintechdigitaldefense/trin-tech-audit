@@ -538,7 +538,8 @@ def _build_darkweb_summary(elements, darkweb_data):
     
     results = darkweb_data.get("results", [])
     if not results:
-        elements.append(Paragraph("  No dark web check data available.", styles["Normal"]))
+        elements.append(Paragraph("  No dark web check data available.",
+            ParagraphStyle('Normal', fontName='Helvetica', fontSize=10, textColor=TRINTECH_GRAY)))
         return
     
     summary = darkweb_data.get("summary", {})
