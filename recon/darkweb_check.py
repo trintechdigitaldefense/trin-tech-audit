@@ -29,6 +29,8 @@ class DarkWebChecker:
     def __init__(self):
         self._lock = threading.Lock()
         self.breaches_found = []
+        # Local cache for XposedOrNot to avoid rate limits
+        self._xposed_cache = {}
 
     def check_emails(self, emails, output_format="text"):
         """
@@ -54,9 +56,11 @@ class DarkWebChecker:
             
             # Handle API key requirement gracefully
             if isinstance(breach_data, dict) and "error" in breach_data:
-                if "401" in breach_data.get("error", "") or "API key" in breach_data.get("error", ""):
-                    print(f"    {YELLOW}⚠{RESET} {email_clean} — API key required for email checking")
-                    print(f"      {DIM}Get a free key at https://haveibeenpwned.com/API/Key{RESET}")
+                if "401" in breach_data.get("error", ""):
+                    print(f"    {YELLOW}⚠{RESET} {email_clean} — HIBP key invalid, using free fallback")
+                    continue
+                elif "API key" in breach_data.get("error", ""):
+                    print(f"    {YELLOW}⚠{RESET} {email_clean} — No breach API key. Using free XposedOrNot fallback")
                     results.append({
                         "email": email_clean,
                         "status": "SKIPPED_API_KEY",
@@ -95,22 +99,41 @@ class DarkWebChecker:
         return results
 
     def _check_email_breaches(self, email):
-        """Check email against HaveIBeenPwned breach database."""
+        """
+        Check email against breach databases.
+        
+        Primary: HaveIBeenPwned (if API key configured).
+        Fallback: XposedOrNot free API (no key required).
+        """
+        import hashlib
+        
+        # Load HIBP API key from config if available
+        api_key = ""
         try:
-            import hashlib
-            email_sha1 = hashlib.sha1(email.lower().encode("utf-8")).hexdigest()
-            
-            # Load HIBP API key from config if available
-            api_key = ""
-            try:
-                import json
-                config_path = "/opt/baal-agent/workspace/config/email.json"
-                with open(config_path) as f:
-                    config = json.load(f)
-                api_key = config.get("hibp_api_key", "")
-            except:
-                pass
-            
+            import json
+            config_path = "/opt/baal-agent/workspace/config/email.json"
+            with open(config_path) as f:
+                config = json.load(f)
+            api_key = config.get("hibp_api_key", "")
+        except:
+            pass
+        
+        # Try HIBP first if key is available
+        if api_key:
+            result = self._check_email_hibp(email, api_key)
+            if result is not None:
+                return result
+        
+        # Fallback to XposedOrNot (free, no API key needed)
+        result = self._check_email_xposedornot(email)
+        if result is not None:
+            return result
+        
+        return {"error": "No breach database available. Configure HIBP key or XposedOrNot API."}
+    
+    def _check_email_hibp(self, email, api_key):
+        """Check email via HaveIBeenPwned API."""
+        try:
             headers = {
                 "hibp-api-key": api_key,
                 "Accept": "application/json"
@@ -127,16 +150,66 @@ class DarkWebChecker:
             elif resp.status_code == 404:
                 return []  # Email not in any known breach
             elif resp.status_code == 401:
-                # No API key — return error dict so caller can show helpful message
-                return {"error": "401 - API key required. Get free key at https://haveibeenpwned.com/API/Key"}
-            elif resp.status_code == 404 or resp.status_code == 403:
-                return []
+                return {"error": "401 - HIBP API key invalid. Get key at https://haveibeenpwned.com/Account"}
             else:
-                print(f"      {YELLOW}API error: {resp.status_code}{RESET}")
                 return []
-        except Exception as e:
-            print(f"      {DIM}Email check failed: {str(e)}{RESET}")
-            return []
+        except Exception:
+            return None  # Error — try fallback
+    
+    def _check_email_xposedornot(self, email):
+        """Check email via XposedOrNot free API (no key required)."""
+        # Check local cache first
+        if email in self._xposed_cache:
+            return self._xposed_cache[email]
+        
+        try:
+            import time
+            # Add small delay to respect rate limits (2 req/sec, 25/hr, 100/day)
+            time.sleep(0.5)
+            
+            resp = requests.get(
+                f"https://api.xposedornot.com/v1/check-email/{quote(email, safe='')}",
+                timeout=10
+            )
+            
+            if resp.status_code == 200:
+                data = resp.json()
+                # XposedOrNot returns: {"breaches": [["Breach1", "Breach2"]], "email": "...", "status": "success"}
+                breaches_list = data.get("breaches", [])
+                if breaches_list and isinstance(breaches_list[0], list):
+                    # Flatten: convert [["Breach1", "Breach2"], ["Adobe"]] to ["Breach1", "Breach2", "Adobe"]
+                    flat = []
+                    for breach_group in breaches_list:
+                        for b in breach_group:
+                            flat.append(b)
+                    self._xposed_cache[email] = flat
+                    return flat
+                self._xposed_cache[email] = []
+                return []
+            elif resp.status_code == 429:
+                # Rate limited — retry once after delay
+                time.sleep(2)
+                resp = requests.get(
+                    f"https://api.xposedornot.com/v1/check-email/{quote(email, safe='')}",
+                    timeout=10
+                )
+                if resp.status_code == 200:
+                    data = resp.json()
+                    breaches_list = data.get("breaches", [])
+                    if breaches_list and isinstance(breaches_list[0], list):
+                        flat = []
+                        for breach_group in breaches_list:
+                            for b in breach_group:
+                                flat.append(b)
+                        self._xposed_cache[email] = flat
+                        return flat
+                    self._xposed_cache[email] = []
+                    return []
+                return {"error": "Rate limited — try again later"}
+            else:
+                return []
+        except Exception:
+            return None  # Error — but this is the last fallback anyway
 
     def _check_email_range(self, email_sha1):
         """Fallback: Check email using the range-based HIBP API (no key required)."""
