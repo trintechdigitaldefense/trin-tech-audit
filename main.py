@@ -158,6 +158,8 @@ def cmd_run(args):
             results["osint"] = _run_osint(eng["target"])
         elif mod == "vuln":
             results["vuln"] = _run_vuln(eng["target"], recon_data=results.get("recon"), web_data=results.get("web"))
+        elif mod == "darkweb":
+            results["darkweb"] = _run_darkweb(eng["target"])
         elif mod == "all":
             results["recon"] = _run_recon(eng["target"], eng.get("device_count", 1))
             results["web"] = _run_web(eng["target"])
@@ -284,6 +286,120 @@ def _run_vuln(target, recon_data=None, web_data=None):
     return results
 
 
+def _run_darkweb(target):
+    try:
+        from recon.darkweb_check import check_data_leaks
+    except ImportError:
+        from .recon.darkweb_check import check_data_leaks
+    
+    print(f"\n  {CYAN}*{RESET} Running dark web leak check on: {BOLD}{target}{RESET}")
+    
+    results = check_data_leaks(
+        domain=target,
+        output_path=str(REPORT_DIR / f"darkweb_{target.replace('.', '_')}.txt")
+    )
+    
+    return results
+
+
+def cmd_darkweb(args):
+    """Run dark web data leak check against email(s), domain, or passwords."""
+    results = {}
+    
+    # Check emails from engagement or provided
+    emails = args.emails
+    if args.email:
+        emails = args.email
+    
+    if not emails and args.engagement_id:
+        eng = load_engagement(args.engagement_id)
+        if eng:
+            # Extract emails from OSINT data if available
+            osint_path = REPORT_DIR / f"{args.engagement_id}_osint.json"
+            if osint_path.exists():
+                with open(osint_path) as f:
+                    osint_data = json.load(f)
+                emails = osint_data.get("emails", [])
+    
+    # Check domain from engagement or provided
+    domain = args.domain
+    if not domain and args.target:
+        domain = args.target
+    
+    # Build check config
+    check_args = {}
+    if emails:
+        check_args["emails"] = [e.strip() for e in emails.split(",")]
+    if domain:
+        check_args["domain"] = domain
+    if args.passwords:
+        check_args["passwords"] = [p.strip() for p in args.passwords.split(",")]
+    
+    if not check_args:
+        print(f"  {YELLOW}![RESET] No targets provided.")
+        print(f"\n  {CYAN}*{RESET} Usage:")
+        print(f"    python main.py darkweb --email user@company.com")
+        print(f"    python main.py darkweb --domain company.com")
+        print(f"    python main.py darkweb --emails a@b.com,c@d.com --domain company.com")
+        print(f"    python main.py darkweb ENG-XXX --emails (from osint data)")
+        print(f"    python main.py darkweb --passwords password123,s3cur3P@ss")
+        return
+    
+    print(f"\n{CYAN}{'='*60}{RESET}")
+    print(f"{CYAN}  TRINTECH DIGITAL DEFENSE — DARK WEB DATA LEAK CHECK{RESET}")
+    print(f"{CYAN}{'='*60}{RESET}")
+    
+    # Run check
+    try:
+        from recon.darkweb_check import check_data_leaks
+        output_path = str(REPORT_DIR / f"darkweb_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt")
+        
+        if args.engagement_id:
+            output_path = str(REPORT_DIR / f"darkweb_{args.engagement_id}.txt")
+        
+        check_result = check_data_leaks(**check_args, output_path=output_path)
+        results["check"] = check_result
+        
+        # Save results with engagement ID for report generation
+        if args.engagement_id:
+            json_path = str(REPORT_DIR / f"{args.engagement_id}_darkweb.json")
+            output_path = str(REPORT_DIR / f"darkweb_{args.engagement_id}.txt")
+        else:
+            json_path = str(REPORT_DIR / f"darkweb_manual_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
+        
+        with open(json_path, "w") as f:
+            json.dump(check_result, f, indent=2, default=str)
+        
+        print(f"\n  {GREEN}✓{RESET} Dark web check complete.")
+        print(f"  {DIM}Results:{RESET} {json_path}")
+        print(f"  {DIM}Report: {RESET} {output_path}")
+        
+        # Update engagement if linked
+        if args.engagement_id:
+            eng = load_engagement(args.engagement_id)
+            if eng:
+                eng["modules_run"].append("darkweb")
+                eng["scan_data"]["darkweb"] = check_result
+                eng_path = DATA_DIR / "engagements.json"
+                try:
+                    with open(eng_path) as f:
+                        all_eng = json.load(f)
+                    for i, e in enumerate(all_eng):
+                        if e["id"] == eng["id"]:
+                            all_eng[i] = eng
+                            break
+                    with open(eng_path, "w") as f:
+                        json.dump(all_eng, f, indent=2, default=str)
+                except:
+                    pass
+        
+    except ImportError:
+        print(f"  {RED}✗{RESET} Install required packages:")
+        print(f"    pip install requests dnspython")
+    except Exception as e:
+        print(f"  {RED}✗{RESET} Error: {str(e)}")
+
+
 def cmd_help(args):
     print_banner()
     print(f"""
@@ -317,7 +433,13 @@ def cmd_help(args):
 {DIM}web{RESET}       Web vuln detection — headers, cookies, CORS, redirects, robots.txt, tech fingerprinting
 {DIM}osint{RESET}      Domain public info, email footprint, WHOIS lookup, DNS, social media
 {DIM}vuln{RESET}       Vulnerability detection across all services — CVE matching, version-specific vulns
+{DIM}darkweb{RESET}  Check if emails, domains, or passwords appear in known data breaches (HIBP)
 {DIM}all{RESET}        Run every module (recon + web + osint + vuln with CVE enrichment)
+
+{BOLD}DARK WEB CHECK:{RESET}
+  {CYAN}python main.py darkweb --email user@company.com{RESET}
+  {CYAN}python main.py darkweb --domain company.com{RESET}
+  {CYAN}python main.py darkweb ENG-XXX  (auto-extracts emails from OSINT data){RESET}
 
 {BOLD}OPTIONS:{RESET}
   --service <type>     micro | smallbiz | pentest (default: micro)
@@ -369,6 +491,16 @@ def main():
     # help
     p_help = sub.add_parser("help", help="Show this help")
     p_help.set_defaults(func=cmd_help)
+
+    # darkweb
+    p_dw = sub.add_parser("darkweb", help="Check if client data appears in known data breaches")
+    p_dw.add_argument("engagement_id", nargs="?", help="Engagement ID (auto-extracts emails from OSINT)")
+    p_dw.add_argument("--emails", default=None, help="Comma-separated emails to check")
+    p_dw.add_argument("--email", default=None, help="Single email to check")
+    p_dw.add_argument("--domain", default=None, help="Domain to check for breach involvement")
+    p_dw.add_argument("--target", default=None, help="Target hostname/domain (alias for --domain)")
+    p_dw.add_argument("--passwords", default=None, help="Comma-separated passwords to check (demo only)")
+    p_dw.set_defaults(func=cmd_darkweb)
 
     # If no args, show help
     if len(sys.argv) < 2:

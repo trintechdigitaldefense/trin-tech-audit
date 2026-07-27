@@ -17,6 +17,7 @@ try:
         SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
         PageBreak, KeepTogether, HRFlowable, Flowable
     )
+    from reportlab.graphics.shapes import Drawing, Line, Wedge, Rect
     HAS_REPORTLAB = True
 except ImportError:
     HAS_REPORTLAB = False
@@ -102,6 +103,7 @@ def generate_report(engagement, scan_data):
     web_data = scan_data.get("web", {})
     osint_data = scan_data.get("osint", {})
     vuln_data = scan_data.get("vuln", {})
+    darkweb_data = scan_data.get("darkweb", {})
 
     # Compile all findings
     all_findings = _compile_all_findings(vuln_data, web_data)
@@ -141,6 +143,8 @@ def generate_report(engagement, scan_data):
     _build_recon_findings(elements, recon_data)
     elements.append(Spacer(1, 12))
     _build_remediation_roadmap(elements, all_findings)
+    elements.append(Spacer(1, 12))
+    _build_darkweb_summary(elements, darkweb_data)
     elements.append(Spacer(1, 12))
     _build_conclusion(elements, client_name, eng_id)
     _build_footer_elements(elements)
@@ -319,7 +323,7 @@ def _build_executive_summary(elements, client_name, target, eng_id, score, summa
     )
     elements.append(para)
 
-    # Summary cards
+    # Summary cards — flattened into single table rows
     cards_data = [
         (str(score), "Security Score", score_color(score)),
         (str(len(findings)), "Total Findings", TRINTECH_BLUE),
@@ -329,41 +333,29 @@ def _build_executive_summary(elements, client_name, target, eng_id, score, summa
         (str(summary.get("low", 0)), "Low", TRINTECH_CYAN),
     ]
 
-    for i in range(0, len(cards_data), 3):
-        row = cards_data[i:i + 3]
-        cell_items = []
-        for value, label, color in row:
-            color_bar = Drawing(8, 8)
-            color_bar.add(Rect(0, 0, 8, 8, fillColor=color, strokeColor=None))
-            cell_data = [
-                color_bar,
-                Paragraph(f"<b>{value}</b>", ParagraphStyle('CardVal', fontName='Helvetica-Bold',
-                  fontSize=22, textColor=color)),
-                Paragraph(f"<i>{label}</i>", ParagraphStyle('CardLabel', fontName='Helvetica',
-                 fontSize=9, textColor=TRINTECH_GRAY))
-            ]
-            cell_table = Table(cell_data, colWidths=[12, 40, 70])
-            cell_table.setStyle(TableStyle([
-                ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-                ('LEFTPADDING', (1, 0), (1, 0), 4),
-                ('TOPPADDING', (0, 0), (-1, -1), 6),
-                ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
-            ]))
-            cell_items.append(cell_table)
+    # Build table data: each card is one row with 3 cells
+    card_rows = []
+    for value, label, color in cards_data:
+        dot = f"<font color='#{''.join(f'{c:02x}' for c in (color.red * 255, color.green * 255, color.blue * 255))}'>■</font>"
+        card_rows.append([
+            dot,
+            Paragraph(f"<b>{value}</b>", ParagraphStyle('CardVal', fontName='Helvetica-Bold',
+              fontSize=22, textColor=color)),
+            Paragraph(f"<i>{label}</i>", ParagraphStyle('CardLabel', fontName='Helvetica',
+             fontSize=9, textColor=TRINTECH_GRAY))
+        ])
 
-        row_tables = []
-        for j in range(0, len(cell_items), 2):
-            t1 = cell_items[j]
-            t2 = cell_items[j + 1] if j + 1 < len(cell_items) else None
-            if t2:
-                row_tables.extend([t1, Spacer(1, 12), t2])
-            else:
-                row_tables.append(t1)
-
-        row_table = Table(row_tables, colWidths=[2.2 * inch, 20, 2.2 * inch])
-        row_table.setStyle([('VALIGN', (0, 0), (-1, -1), 'MIDDLE')])
-        elements.append(row_table)
-        elements.append(Spacer(1, 12))
+    card_table = Table(card_rows, colWidths=[12, 40, 70])
+    card_table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('LEFTPADDING', (1, 0), (1, 0), 4),
+        ('TOPPADDING', (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+        ('GRID', (0, 0), (-1, -1), 1, TRINTECH_BLUE),
+        ('BACKGROUND', (0, 0), (-1, 0), (0.95, 0.95, 0.95)),
+    ]))
+    elements.append(card_table)
+    elements.append(Spacer(1, 12))
 
 
 def _build_findings_section(elements, findings):
@@ -528,6 +520,190 @@ def _build_recon_findings(elements, recon_data):
     if subs:
         elements.append(Paragraph(f"<b>Subdomains: {len(subs)} discovered</b>",
             ParagraphStyle('Sub', fontName='Helvetica-Bold', fontSize=11, spaceAfter=4)))
+
+
+def _build_darkweb_summary(elements, darkweb_data):
+    """Build the dark web data leak check section."""
+    if not darkweb_data:
+        return
+    
+    # Add section header
+    elements.append(Paragraph(
+        "  DARK WEB DATA LEAK CHECK",
+        ParagraphStyle('SectionHeader', fontName='Helvetica-Bold', fontSize=14,
+                       textColor=TRINTECH_BLUE, spaceAfter=8, spaceBefore=4))
+    )
+    elements.append(HRFlowable(width="100%", thickness=1, color=TRINTECH_BLUE))
+    elements.append(Spacer(1, 6))
+    
+    results = darkweb_data.get("results", [])
+    if not results:
+        elements.append(Paragraph("  No dark web check data available.", styles["Normal"]))
+        return
+    
+    summary = darkweb_data.get("summary", {})
+    breached_count = summary.get("breaches_found", 0)
+    clean_count = summary.get("clean", 0)
+    total = summary.get("total_checked", 0)
+    
+    # Status indicator
+    if breached_count > 0:
+        status_text = f"{RED}⚠ {BREACH_COUNT} of {total} item(s) found in known data breaches{RESET}"
+        status_color = TRINTECH_ORANGE
+    else:
+        status_text = f"✓ No items found in known data breaches"
+        status_color = TRINTECH_GREEN
+    
+    elements.append(Paragraph(
+        f"<b>Overall Status:</b> <font color='#000000'>{status_text}</font>",
+        ParagraphStyle('Status', fontName='Helvetica-Bold', fontSize=12,
+                       textColor=status_color, spaceAfter=12, spaceBefore=6))
+    )
+    
+    # Email breach details
+    email_results = [r for r in results if "email" in r]
+    if email_results:
+        elements.append(Paragraph("<b>Emails Checked:</b>", 
+            ParagraphStyle('SubHeader', fontName='Helvetica-Bold', fontSize=11,
+                           spaceAfter=4, spaceBefore=8)))
+        
+        data = []
+        for r in email_results:
+            email = r.get("email", "N/A")
+            status = r.get("status", "UNKNOWN")
+            breaches = r.get("breaches_found", 0)
+            status_text = f"{breaches} breach(es)" if breaches > 0 else "Clean"
+            
+            # Color the status
+            if status == "COMPROMISED":
+                status_col = TRINTECH_ORANGE
+            elif status == "CLEAN":
+                status_col = TRINTECH_GREEN
+            else:
+                status_col = TRINTECH_YELLOW
+            
+            data.append([
+                Paragraph(email, ParagraphStyle('Email', fontName='Helvetica', fontSize=10)),
+                Paragraph(f"<b>{status_text}</b>", ParagraphStyle('StatusText', fontName='Helvetica-Bold', 
+                    fontSize=10, textColor=status_col))
+            ])
+        
+        table = Table(data, colWidths=[5.5 * inch, 1.2 * inch])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), TRINTECH_WHITE),
+            ('BOX', (0, 0), (-1, -1), 1, TRINTECH_BLUE),
+            ('LINEBELOW', (0, 0), (-1, -2), 0.5, TRINTECH_BLUE),
+            ('LEFTPADDING', (0, 0), (-1, -1), 8),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+            ('TOPPADDING', (0, 0), (-1, -1), 4),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+        ]))
+        elements.append(table)
+        
+        # Breach details for compromised emails
+        for r in email_results:
+            if r.get("breaches_found", 0) > 0:
+                breaches = r.get("breaches", [])
+                for b in breaches[:3]:  # Show top 3
+                    elements.append(Spacer(1, 2))
+                    elements.append(Paragraph(
+                        f"  ├─ <b>{b.get('Name', 'Unknown')}</b> ({b.get('BreachDate', 'Unknown')})",
+                        ParagraphStyle('BreachDetail', fontName='Helvetica', fontSize=9, 
+                                       textColor=TRINTECH_GRAY, leftIndent=20))
+                    )
+                    elements.append(Paragraph(
+                        f"  │  └─ Data: {', '.join(b.get('DataClasses', [])[:5])}",
+                        ParagraphStyle('BreachData', fontName='Helvetica', fontSize=8,
+                                       textColor=TRINTECH_GRAY, leftIndent=20)))
+    
+    # Password check results
+    pw_results = [r for r in results if "password_length" in r]
+    if pw_results:
+        elements.append(Spacer(1, 6))
+        elements.append(Paragraph("<b>Password Security Check:</b>",
+            ParagraphStyle('SubHeader', fontName='Helvetica-Bold', fontSize=11,
+                           spaceAfter=4, spaceBefore=8)))
+        
+        pw_data = []
+        for r in pw_results:
+            pw_len = r.get("password_length", 0)
+            is_pwned = r.get("pwned", False)
+            count = r.get("times_pwned", 0)
+            
+            if is_pwned:
+                status_text = f"⚠ PWNED {count:,} times"
+                status_col = TRINTECH_ORANGE
+            elif r.get("safe"):
+                status_text = "✓ Not found"
+                status_col = TRINTECH_GREEN
+            else:
+                status_text = "? Unknown"
+                status_col = TRINTECH_YELLOW
+            
+            pw_data.append([
+                Paragraph(f"<b>{pw_len}-character password</b>",
+                    ParagraphStyle('PwLen', fontName='Helvetica', fontSize=10)),
+                Paragraph(status_text, ParagraphStyle('PwStatus', fontName='Helvetica-Bold',
+                    fontSize=10, textColor=status_col))
+            ])
+        
+        if pw_data:
+            pw_table = Table(pw_data, colWidths=[5.5 * inch, 1.2 * inch])
+            pw_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, -1), TRINTECH_WHITE),
+                ('BOX', (0, 0), (-1, -1), 1, TRINTECH_BLUE),
+                ('LINEBELOW', (0, 0), (-1, -2), 0.5, TRINTECH_BLUE),
+                ('LEFTPADDING', (0, 0), (-1, -1), 8),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+                ('TOPPADDING', (0, 0), (-1, -1), 4),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ]))
+            elements.append(pw_table)
+    
+    # Recommendations based on findings
+    if breached_count > 0:
+        elements.append(Spacer(1, 8))
+        elements.append(Paragraph("<b>Immediate Actions Required:</b>",
+            ParagraphStyle('SubHeader', fontName='Helvetica-Bold', fontSize=11,
+                           textColor=TRINTECH_ORANGE, spaceAfter=4, spaceBefore=8)))
+        
+        recs = [
+            "Force immediate password resets for ALL compromised accounts",
+            "Enable multi-factor authentication (MFA/2FA) on all accounts",
+            "Use unique, strong passwords for every service (recommend password manager)",
+            "Monitor for credential stuffing attacks and unauthorized logins",
+            "Consider implementing enterprise breach monitoring service",
+            "Review access logs for any unauthorized activity from breach dates"
+        ]
+        
+        for i, rec in enumerate(recs, 1):
+            elements.append(Paragraph(f"  {i}. {rec}",
+                ParagraphStyle('Rec', fontName='Helvetica', fontSize=10, leftIndent=20)))
+    else:
+        elements.append(Spacer(1, 8))
+        elements.append(Paragraph("<b>Recommendations:</b>",
+            ParagraphStyle('SubHeader', fontName='Helvetica-Bold', fontSize=11,
+                           spaceAfter=4, spaceBefore=8)))
+        
+        recs = [
+            "Enable MFA on all accounts as prevention",
+            "Use unique, strong passwords for every service",
+            "Monitor for new breaches regularly (recommended quarterly)",
+            "Consider setting up breach monitoring alerts for company domain"
+        ]
+        
+        for i, rec in enumerate(recs, 1):
+            elements.append(Paragraph(f"  {i}. {rec}",
+                ParagraphStyle('Rec', fontName='Helvetica', fontSize=10, leftIndent=20)))
+    
+    # Disclaimer
+    elements.append(Spacer(1, 6))
+    elements.append(Paragraph(
+        "<i>Disclaimer: This check uses publicly available breach data from HaveIBeenPwned (HIBP). "
+        "Absence from breach databases does not guarantee security — new breaches occur daily. "
+        "Regular monitoring is recommended.</i>",
+        ParagraphStyle('Disclaimer', fontName='Helvetica-Oblique', fontSize=8,
+                       textColor=TRINTECH_GRAY, spaceAfter=4)))
 
 
 def _build_remediation_roadmap(elements, findings):
