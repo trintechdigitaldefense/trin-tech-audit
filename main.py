@@ -13,6 +13,7 @@ Usage:
 Example:
     python main.py start "Acme Corp" 192.168.1.1/24 --service smallbiz
     python main.py start "ABC Retail" example.com --modules recon web osint
+    python main.py batch "ABC Corp" --targets site1.com,site2.com --service smallbiz
     python main.py run ENG-001 --modules recon web vuln
     python main.py report ENG-001
 """
@@ -20,9 +21,13 @@ Example:
 import argparse
 import json
 import os
+import smtplib
+import ssl
 import sys
 import uuid
 from datetime import datetime
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from pathlib import Path
 
 # Project root
@@ -88,12 +93,13 @@ def save_scan_data(eng_id, module_name, data):
     return path
 
 
-def create_engagement(client_name, target, service="micro", addons=None, device_count=1):
+def create_engagement(client_name, target, service="micro", addons=None, device_count=1, client_email=None):
     eng_id = f"ENG-{datetime.now().strftime('%y%m%d')}-{uuid.uuid4().hex[:6].upper()}"
     engagement = {
         "id": eng_id,
         "client_name": client_name,
         "target": target,
+        "client_email": client_email or "",
         "service": service,
         "addons": addons or [],
         "device_count": device_count,
@@ -102,6 +108,7 @@ def create_engagement(client_name, target, service="micro", addons=None, device_
         "modules_run": [],
         "scan_data": {},
         "report_generated": False,
+        "report_sent": False,
     }
     save_engagement(engagement)
     print(f"\n  {GREEN}✓{RESET} Engagement created: {BOLD}{eng_id}{RESET}")
@@ -120,6 +127,7 @@ def cmd_start(args):
         service=args.service,
         addons=args.addons.split(",") if args.addons else [],
         device_count=args.devices,
+        client_email=args.email,
     )
 
 
@@ -218,21 +226,334 @@ def cmd_report(args):
     if result:
         eng["report_generated"] = True
         eng["status"] = "complete"
-        eng_path = DATA_DIR / "engagements.json"
-        with open(eng_path) as f:
-            all_eng = json.load(f)
-        for i, e in enumerate(all_eng):
-            if e["id"] == eng["id"]:
-                all_eng[i] = eng
-                break
-        with open(eng_path, "w") as f:
-            json.dump(all_eng, f, indent=2, default=str)
+        _update_engagement_in_store(eng)
 
         print(f"\n  {GREEN}✓{RESET} Report generated: {BOLD}{result}{RESET}")
         print(f"  {DIM}Location:{RESET} {REPORT_DIR / result}")
+
+        # Auto-email if --email provided
+        client_email = args.email or eng.get("client_email", "")
+        if client_email:
+            print(f"\n  {DIM}• Sending report to {client_email}...{RESET}")
+            total_findings = sum(len(scan_data.get(m, {}).get("findings", [])) for m in scan_data)
+            email_result = _send_report_email(
+                client_name=eng["client_name"],
+                client_email=client_email,
+                eng_id=eng["id"],
+                report_path=str(REPORT_DIR / result),
+                target=eng["target"],
+                findings_count=total_findings,
+            )
+            if email_result.get("status") == "sent":
+                print(f"  {GREEN}✓{RESET} Report email sent to {client_email}")
+                eng["report_sent"] = True
+                _update_engagement_in_store(eng)
+            else:
+                print(f"  {RED}✗{RESET} Email failed: {email_result.get('error', 'unknown')}")
+                print(f"  {DIM}• Tip: Check /opt/baal-agent/workspace/config/email.json and verify SMTP credentials{RESET}")
+        else:
+            print(f"\n  {CYAN}*{RESET} To email this report automatically, re-run with: --email client@company.com")
         print()
     else:
         print(f"\n  {RED}✗{RESET} Report generation failed.")
+
+
+# ==================== BATCH SCANNING ====================
+
+def create_batch_engagement(client_name, targets, service="micro", addons=None, device_count=1, client_email=None):
+    """Create separate engagements for each target — for batch/enterprise scanning."""
+    results = []
+    for target in targets:
+        target = target.strip()
+        if target:
+            eng = create_engagement(
+                client_name=client_name,
+                target=target,
+                service=service,
+                addons=addons or [],
+                device_count=device_count,
+                client_email=client_email,
+            )
+            results.append(eng)
+    return results
+
+
+def cmd_batch(args):
+    """Start batch audit for multiple targets under one client."""
+    targets = [t.strip() for t in args.targets.split(",") if t.strip()]
+    if not targets:
+        print(f"  {RED}✗{RESET} No targets provided. Use: --targets site1.com,site2.com")
+        return
+
+    print(f"\n  {CYAN}*{RESET} Creating {BOLD}{len(targets)}{RESET} batch engagements for: {BOLD}{args.client}{RESET}")
+    print(f"  {DIM}Targets:{RESET} {', '.join(targets)}\n")
+
+    results = create_batch_engagement(
+        client_name=args.client,
+        targets=targets,
+        service=args.service,
+        addons=args.addons.split(",") if args.addons else [],
+        device_count=args.devices,
+        client_email=args.email,
+    )
+
+    print(f"\n  {GREEN}✓{RESET} {BOLD}{len(results)}{RESET} engagements created:")
+    for eng in results:
+        print(f"  {DIM}• {eng['id']} → {eng['target']} ({eng['service']}){RESET}")
+
+    print(f"\n  {CYAN}*{RESET} Run all: {BOLD}python main.py batch-run --engagements {' '.join(e['id'] for e in results)}{RESET}")
+    print(f"  {CYAN}*{RESET} Or run each individually: {BOLD}python main.py run <eng_id>{RESET}\n")
+
+
+def cmd_batch_run(args):
+    """Run scan modules across multiple engagements at once."""
+    eng_ids = [e.strip() for e in args.engagements.split(",")]
+    modules = args.modules.split(",") if args.modules else ["recon", "web"]
+    
+    print(f"\n  {CYAN}*{RESET} Running {BOLD}{', '.join(modules)}{RESET} on {BOLD}{len(eng_ids)}{RESET} engagements")
+    
+    for eng_id in eng_ids:
+        eng_id = eng_id.strip()
+        if not eng_id:
+            continue
+        print(f"\n  {DIM}{'─'*50}{RESET}")
+        eng = load_engagement(eng_id)
+        if not eng:
+            print(f"  {RED}✗{RESET} Engagement not found: {eng_id}")
+            continue
+        print(f"  {BOLD}Scanning: {eng['client_name']} ({eng_id}) → {eng['target']}{RESET}")
+
+        results = {}
+        for mod in modules:
+            mod = mod.strip().lower()
+            if mod == "recon":
+                results["recon"] = _run_recon(eng["target"], eng.get("device_count", 1))
+            elif mod == "web":
+                results["web"] = _run_web(eng["target"])
+            elif mod == "osint":
+                results["osint"] = _run_osint(eng["target"])
+            elif mod == "vuln":
+                results["vuln"] = _run_vuln(eng["target"], recon_data=results.get("recon"), web_data=results.get("web"))
+            elif mod == "darkweb":
+                results["darkweb"] = _run_darkweb(eng["target"])
+            elif mod == "all":
+                results["recon"] = _run_recon(eng["target"], eng.get("device_count", 1))
+                results["web"] = _run_web(eng["target"])
+                results["osint"] = _run_osint(eng["target"])
+                results["vuln"] = _run_vuln(eng["target"], recon_data=results.get("recon"), web_data=results.get("web"))
+            else:
+                print(f"  {YELLOW}![RESET] Unknown module: {mod}")
+                continue
+
+            save_scan_data(eng["id"], mod, results[mod])
+            eng["modules_run"].append(mod)
+            eng["scan_data"][mod] = results[mod]
+
+        eng["status"] = "scanning_complete"
+        _update_engagement_in_store(eng)
+
+        print(f"\n  {GREEN}✓{RESET} {eng['client_name']}/{eng['target']} — scanning_complete")
+
+    print(f"\n  {GREEN}✓{RESET} Batch scan complete. Run reports individually or with --auto-report")
+    if args.auto_report:
+        cmd_auto_report(args)
+
+
+# ==================== AUTO EMAIL REPORTS ====================
+
+EMAIL_CONFIG_PATH = "/opt/baal-agent/workspace/config/email.json"
+
+
+def _load_email_config():
+    """Load email credentials from config file."""
+    if not os.path.exists(EMAIL_CONFIG_PATH):
+        return None
+    with open(EMAIL_CONFIG_PATH) as f:
+        return json.load(f)
+
+
+def _send_report_email(client_name, client_email, eng_id, report_path, target, findings_count):
+    """Send the completed audit report as an email attachment."""
+    cfg = _load_email_config()
+    if not cfg:
+        return {"error": "Email config not found at /opt/baal-agent/workspace/config/email.json", "status": "failed"}
+
+    try:
+        subject = f"🛡️ Security Audit Report — {client_name} (ENG-{eng_id})"
+        
+        body = f"""Dear {client_name},
+
+Your security audit report is ready.
+
+┌─────────────────────────────────────────────┐
+│  TRINTECH DIGITAL DEFENSE — AUDIT COMPLETE  │
+├─────────────────────────────────────────────┤
+│  Client:   {client_name}
+│  Target:   {target}
+│  Report:   ENG-{eng_id}
+│  Findings: {findings_count} items assessed
+│  Status:   Complete
+└─────────────────────────────────────────────┘
+
+The attached PDF report includes:
+• Executive summary with security score
+• Detailed findings with severity ratings
+• Network discovery results
+• Dark web breach check results
+• Step-by-step remediation roadmap
+
+Please review the report at your earliest convenience. 
+I'm available to walk through any findings or discuss next steps.
+
+📅 Book a follow-up call: https://exile-aerobic-saddle-rough.2n6.me/booking/
+📱 WhatsApp: +1 (868) 362-0679
+
+Regards,
+Jason Ramdharry
+Founder, TrinTech Digital Defense 🇹🇹
+DEFEND. DETECT. DOMINATE.
+"""
+
+        msg = MIMEMultipart()
+        msg["From"] = cfg["user"]
+        msg["To"] = client_email
+        msg["Subject"] = subject
+        msg.attach(MIMEText(body, "plain"))
+
+        # Attach the PDF
+        try:
+            from email.mime.base import MIMEBase
+            from email import encoders
+            import os as _os
+
+            if _os.path.exists(report_path):
+                with open(report_path, "rb") as f:
+                    part = MIMEBase("application", "pdf")
+                    part.set_payload(f.read())
+                encoders.encode_base64(part)
+                part.add_header(
+                    "Content-Disposition",
+                    f'attachment; filename="{_os.path.basename(report_path)}"',
+                )
+                msg.attach(part)
+        except Exception:
+            pass  # Report sent without attachment if file unavailable
+
+        # Send
+        context = ssl.create_default_context()
+        with smtplib.SMTP(cfg["smtp_host"], int(cfg.get("smtp_port", 587))) as server:
+            server.starttls(context=context)
+            server.login(cfg["user"], cfg["password"])
+            server.send_message(msg)
+
+        return {"status": "sent", "to": client_email, "subject": subject}
+
+    except Exception as e:
+        return {"error": str(e), "status": "failed"}
+
+
+def cmd_auto_report(args):
+    """Auto-generate reports and send emails for specified engagements."""
+    eng_ids = [e.strip() for e in args.engagements.split(",")] if args.engagements else []
+    client_email = args.email
+
+    if not eng_ids:
+        print(f"  {YELLOW}![RESET] No engagements specified. Use: --engagements ENG-XXX,ENG-YYY --email client@domain.com")
+        return
+
+    sent = 0
+    failed = 0
+
+    for eng_id in eng_ids:
+        eng_id = eng_id.strip()
+        if not eng_id:
+            continue
+
+        eng = load_engagement(eng_id)
+        if not eng:
+            print(f"  {RED}✗{RESET} Engagement not found: {eng_id}")
+            failed += 1
+            continue
+
+        print(f"\n  {CYAN}*{RESET} Processing: {BOLD}{eng['client_name']} ({eng_id}){RESET}")
+
+        # Generate report if not already done
+        if not eng.get("report_generated"):
+            print(f"  {DIM}• Generating PDF report...{RESET}")
+            scan_data = {}
+            for mod in eng.get("modules_run", []):
+                path = REPORT_DIR / f"{eng['id']}_{mod}.json"
+                if path.exists():
+                    with open(path) as f:
+                        scan_data[mod] = json.load(f)
+
+            try:
+                from pdf_report import generate_report
+            except ImportError:
+                from .pdf_report import generate_report
+
+            report_file = generate_report(eng, scan_data)
+            if not report_file:
+                print(f"  {RED}✗{RESET} Report generation failed")
+                failed += 1
+                continue
+
+            eng["report_generated"] = True
+            eng["status"] = "complete"
+            _update_engagement_in_store(eng)
+
+            report_path = REPORT_DIR / report_file
+        else:
+            report_file = None
+            report_path = REPORT_DIR / "report.pdf"  # fallback
+
+        # Count findings for email
+        total_findings = 0
+        for mod in eng.get("modules_run", []):
+            path = REPORT_DIR / f"{eng['id']}_{mod}.json"
+            if path.exists():
+                with open(path) as f:
+                    data = json.load(f)
+                if "findings" in data:
+                    total_findings += len(data["findings"])
+                if "summary" in data:
+                    s = data["summary"]
+                    total_findings += s.get("critical", 0) + s.get("high", 0) + s.get("medium", 0) + s.get("low", 0)
+
+        # Auto-send email if configured
+        if client_email:
+            print(f"  {DIM}• Sending report to {client_email}...{RESET}")
+            email_result = _send_report_email(
+                client_name=eng["client_name"],
+                client_email=client_email,
+                eng_id=eng_id,
+                report_path=str(report_path),
+                target=eng["target"],
+                findings_count=total_findings,
+            )
+            if email_result.get("status") == "sent":
+                print(f"  {GREEN}✓{RESET} Report email sent to {client_email}")
+                sent += 1
+            else:
+                print(f"  {RED}✗{RESET} Email failed: {email_result.get('error', 'unknown')}")
+                failed += 1
+        else:
+            print(f"  {DIM}• No email configured — to send automatically, use --email client@domain.com{RESET}")
+
+    print(f"\n  {GREEN}✓{RESET} Batch report complete: {BOLD}{sent} sent{RESET}, {BOLD}{failed} failed{RESET}")
+
+
+def _update_engagement_in_store(eng):
+    """Update an engagement in the engagements.json store."""
+    eng_path = DATA_DIR / "engagements.json"
+    with open(eng_path) as f:
+        all_eng = json.load(f)
+    for i, e in enumerate(all_eng):
+        if e["id"] == eng["id"]:
+            all_eng[i] = eng
+            break
+    with open(eng_path, "w") as f:
+        json.dump(all_eng, f, indent=2, default=str)
 
 
 # ==================== MODULE IMPLEMENTATIONS ====================
@@ -405,15 +726,19 @@ def cmd_help(args):
     print(f"""
 {BOLD}USAGE:{RESET}
     python main.py start <client_name> <target> [options]
+    python main.py batch <client_name> --targets t1,t2 [options]
+    python main.py batch-run --engagements ENG-XXX,ENG-YYY
     python main.py list
     python main.py run <engagement_id> [modules]
-    python main.py report <engagement_id>
+    python main.py report <engagement_id> [--email client@email]
 
 {BOLD}COMMANDS:{RESET}
-{DIM}start{RESET}     Start a new audit engagement
-{DIM}list{RESET}       List all engagements
-{DIM}run{RESET}        Run scan modules on an engagement
-{DIM}report{RESET}     Generate professional PDF report from scan data
+{DIM}start{RESET}      Start a new audit engagement
+{DIM}batch{RESET}      Create engagements for multiple targets at once
+{DIM}batch-run{RESET}  Run scans across multiple engagements
+{DIM}list{RESET}        List all engagements
+{DIM}run{RESET}         Run scan modules on an engagement
+{DIM}report{RESET}      Generate PDF report (optionally auto-emails it)
 
 {BOLD}EXAMPLES:{RESET}
   Start an engagement:
@@ -425,8 +750,12 @@ def cmd_help(args):
   Run specific modules:
     {CYAN}python main.py run ENG-240101-ABC123 --modules recon web{RESET}
 
-  Generate PDF report:
-    {CYAN}python main.py report ENG-240101-ABC123{RESET}
+  Generate & email PDF report:
+    {CYAN}python main.py report ENG-240101-ABC123 --email client@company.com{RESET}
+
+  Batch scan multiple sites:
+    {CYAN}python main.py batch "ABC Corp" --targets site1.com,site2.com{RESET}
+    {CYAN}python main.py batch-run --engagements ENG-XXX,ENG-YY --auto-report --email client@corp.com{RESET}
 
 {BOLD}MODULES:{RESET}
 {DIM}recon{RESET}    Port scan, web services, DNS enumeration, SSL check, subdomain discovery, version detection
@@ -471,6 +800,7 @@ def main():
                          help="Service tier (default: micro)")
     p_start.add_argument("--devices", type=int, default=1, help="Number of devices")
     p_start.add_argument("--addons", default="", help="Comma-separated addons: sqlmap,bruteforce,exploit")
+    p_start.add_argument("--email", default=None, help="Client email for auto-report delivery")
     p_start.set_defaults(func=cmd_start)
 
     # list
@@ -486,6 +816,8 @@ def main():
     # report
     p_report = sub.add_parser("report", help="Generate PDF report")
     p_report.add_argument("engagement_id", help="Engagement ID")
+    p_report.add_argument("--email", default=None, help="Client email to auto-send report to")
+    p_report.add_argument("--auto-report", action="store_true", help="Auto-generate + send report")
     p_report.set_defaults(func=cmd_report)
 
     # help
@@ -501,6 +833,25 @@ def main():
     p_dw.add_argument("--target", default=None, help="Target hostname/domain (alias for --domain)")
     p_dw.add_argument("--passwords", default=None, help="Comma-separated passwords to check (demo only)")
     p_dw.set_defaults(func=cmd_darkweb)
+
+    # batch — create engagements for multiple targets
+    p_batch = sub.add_parser("batch", help="Create audit engagements for multiple targets")
+    p_batch.add_argument("client", help="Client name")
+    p_batch.add_argument("--targets", required=True, help="Comma-separated targets: site1.com,site2.com")
+    p_batch.add_argument("--service", default="micro", choices=["micro", "smallbiz", "pentest"],
+                         help="Service tier (default: micro)")
+    p_batch.add_argument("--devices", type=int, default=1, help="Number of devices")
+    p_batch.add_argument("--addons", default="", help="Comma-separated addons: sqlmap,bruteforce,exploit")
+    p_batch.add_argument("--email", default=None, help="Client email for auto-report delivery")
+    p_batch.set_defaults(func=cmd_batch)
+
+    # batch-run — run modules across multiple engagements
+    p_batch_run = sub.add_parser("batch-run", help="Run scan modules across multiple engagements")
+    p_batch_run.add_argument("--engagements", required=True, help="Comma-separated engagement IDs")
+    p_batch_run.add_argument("--modules", default="all", help="Modules to run: recon,web,osint,vuln,all")
+    p_batch_run.add_argument("--email", default=None, help="Client email to auto-send reports")
+    p_batch_run.add_argument("--auto-report", action="store_true", help="Also generate + email reports")
+    p_batch_run.set_defaults(func=cmd_batch_run)
 
     # If no args, show help
     if len(sys.argv) < 2:
