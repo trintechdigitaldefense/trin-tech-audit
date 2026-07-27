@@ -173,6 +173,13 @@ def cmd_run(args):
             results["web"] = _run_web(eng["target"])
             results["osint"] = _run_osint(eng["target"])
             results["vuln"] = _run_vuln(eng["target"], recon_data=results.get("recon"), web_data=results.get("web"))
+            # Save each sub-module individually
+            for submod in ["recon", "web", "osint", "vuln"]:
+                path = save_scan_data(eng["id"], submod, results[submod])
+                print(f"  {GREEN}+{RESET} Module {BOLD}{submod}{RESET} complete — saved to {DIM}{path}{RESET}")
+                eng["modules_run"].append(submod)
+                eng["scan_data"][submod] = results[submod]
+            continue  # Skip the save block below
         else:
             print(f"  {YELLOW}![RESET] Unknown module: {mod} (use: recon, web, osint, vuln, all)")
             continue
