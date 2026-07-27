@@ -1,0 +1,2839 @@
+{
+  "url_count": 32,
+  "endpoints": [
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/.env",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.env",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "x-origin-cache": "HIT",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df58-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "A5D6:684C7:1E84D46:1EB15E1:6A66D1D0",
+        "Accept-Ranges": "bytes",
+        "Age": "754",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230142-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.710787,VS0,VE1",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "bc12673a31e9ad6dd36ead3d44361fe4c99bd82a"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/.env",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "x-origin-cache": "HIT",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df58-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "A5D6:684C7:1E84D46:1EB15E1:6A66D1D0",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "Age": "754",
+        "X-Served-By": "cache-fra-eddf8230112-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.715732,VS0,VE1",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "5057274aa6e9a44d53455fd81328b202b15822b4"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/phpinfo.php",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/phpinfo.php",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "A0D0:2BCD00:1DFDCD4:1E2A167:6A66D1D0",
+        "Accept-Ranges": "bytes",
+        "Age": "754",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230199-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.735796,VS0,VE1",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "3dfbb8357e78aa2b5b8adb599906b677f33238d6"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443",
+      "status_code": 200,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Content-Security-Policy",
+          "risk": "CSP missing",
+          "fix": "Add: Content-Security-Policy policy",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Content-Security-Policy",
+          "detail": "CSP missing",
+          "remediation": "Add: Content-Security-Policy policy"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "26743",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Last-Modified": "Mon, 27 Jul 2026 03:17:08 GMT",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a66cdb4-1abeb\"",
+        "expires": "Mon, 27 Jul 2026 03:44:40 GMT",
+        "Cache-Control": "max-age=600",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "2EAA:B727A:1E2A01C:1E56391:6A66D1D0",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230138-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.707684,VS0,VE111",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "5439f6584f706c3c8c3406455799cbf39afccbb1"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80",
+      "status_code": 200,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Content-Security-Policy",
+          "risk": "CSP missing",
+          "fix": "Add: Content-Security-Policy policy",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Content-Security-Policy",
+          "detail": "CSP missing",
+          "remediation": "Add: Content-Security-Policy policy"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "26743",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Last-Modified": "Mon, 27 Jul 2026 03:17:08 GMT",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a66cdb4-1abeb\"",
+        "expires": "Mon, 27 Jul 2026 03:44:40 GMT",
+        "Cache-Control": "max-age=600",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "2EAA:B727A:1E2A01C:1E56391:6A66D1D0",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230081-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.735566,VS0,VE83",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "c2db0302f4b47028c26bcea10cf9765e30e3e0ec"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/phpinfo.php",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "A0D0:2BCD00:1DFDCD4:1E2A167:6A66D1D0",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "Age": "754",
+        "X-Served-By": "cache-fra-eddf8230034-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.964846,VS0,VE1",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "b40485a07a95e8f3a118079a2f9c7ca23cf8689c"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/wp-config.php",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/wp-config.php",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df58-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "4EF0:37FA4F:1F8756D:1FB4763:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:14 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230022-FRA",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.886894,VS0,VE105",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "3f85822b9ac36d15b26099c2349da85783317a6e"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/.well-known/security.txt",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df58-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "5734:40B67:1F13C3E:1F40DCD:6A66D4BE",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "Age": "0",
+        "X-Served-By": "cache-fra-eddf8230101-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.930578,VS0,VE71",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "e065042ecf631e2570612f096d72e6f975532135"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/.well-known/security.txt",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.well-known/security.txt",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df58-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "5734:40B67:1F13C3E:1F40DCD:6A66D4BE",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230195-FRA",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.890811,VS0,VE110",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "bb20015c760ffcb138c5cb230dd82901d0b6cdf4"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/wp-config.php",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df58-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "4EF0:37FA4F:1F8756D:1FB4763:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "Age": "0",
+        "X-Served-By": "cache-fra-eddf8230040-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.013625,VS0,VE1",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "a1044e5f88ca8bfc40e547d6095d38b8256b9dcc"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/actuator/health",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/actuator/health",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "3236:3B925F:1EACBC9:1ED9CED:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230187-FRA",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.893665,VS0,VE128",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "59f9fe534d7503d2ea6f5ee82d483d03f3373a6b"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/.git/config",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "4D84:14C232:1F25CAC:1F52ED9:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "Age": "0",
+        "X-Served-By": "cache-fra-eddf8230106-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.927887,VS0,VE93",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "71e33dd81191527541bd928b768d8792a7d9ba4e"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/server-status",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/server-status",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "x-origin-cache": "HIT",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "74B0:2BCD00:1E61B5A:1E8EAFD:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230096-FRA",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.890921,VS0,VE128",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "ce5d561f19a6baea13c7905f4a06c4de8983ec9a"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/server-status",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "x-origin-cache": "HIT",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "74B0:2BCD00:1E61B5A:1E8EAFD:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "Age": "0",
+        "X-Served-By": "cache-fra-eddf8230059-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.964773,VS0,VE54",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "40912a5c012a41dd2168ede7ba68760c828d3e6a"
+      }
+    },
+    {
+      "url": "http://trintechdigitaldefense.github.io:80/.git/config",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "MEDIUM",
+          "title": "Unencrypted HTTP",
+          "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.git/config",
+          "remediation": "Redirect all traffic to HTTPS using HSTS"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "4D84:14C232:1F25CAC:1F52ED9:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Age": "0",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "X-Served-By": "cache-fra-eddf8230080-FRA",
+        "X-Cache": "MISS",
+        "X-Cache-Hits": "0",
+        "X-Timer": "S1785124035.887047,VS0,VE134",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "16c742eacd479c57b17238079c87842e24fd1306"
+      }
+    },
+    {
+      "url": "https://trintechdigitaldefense.github.io:443/actuator/health",
+      "status_code": 404,
+      "server": "GitHub.com",
+      "technologies": [
+        "Go"
+      ],
+      "missing_headers": [
+        {
+          "header": "X-Frame-Options",
+          "risk": "Clickjacking risk",
+          "fix": "Add: X-Frame-Options DENY",
+          "severity": "LOW"
+        },
+        {
+          "header": "X-Content-Type-Options",
+          "risk": "MIME sniffing risk",
+          "fix": "Add: X-Content-Type-Options nosniff",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "X-XSS-Protection",
+          "risk": "XSS header missing",
+          "fix": "Add: X-XSS-Protection 1; mode=block",
+          "severity": "MEDIUM"
+        },
+        {
+          "header": "Referrer-Policy",
+          "risk": "Referrer policy missing",
+          "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+          "severity": "LOW"
+        },
+        {
+          "header": "Permissions-Policy",
+          "risk": "Permissions policy missing",
+          "fix": "Add: Permissions-Policy camera=(), microphone=()",
+          "severity": "LOW"
+        }
+      ],
+      "info_disclosure": [
+        {
+          "issue": "Server disclosed: GitHub.com",
+          "severity": "LOW"
+        }
+      ],
+      "security_findings": [
+        {
+          "severity": "LOW",
+          "title": "Missing: X-Frame-Options",
+          "detail": "Clickjacking risk",
+          "remediation": "Add: X-Frame-Options DENY"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-Content-Type-Options",
+          "detail": "MIME sniffing risk",
+          "remediation": "Add: X-Content-Type-Options nosniff"
+        },
+        {
+          "severity": "MEDIUM",
+          "title": "Missing: X-XSS-Protection",
+          "detail": "XSS header missing",
+          "remediation": "Add: X-XSS-Protection 1; mode=block"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Referrer-Policy",
+          "detail": "Referrer policy missing",
+          "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+        },
+        {
+          "severity": "LOW",
+          "title": "Missing: Permissions-Policy",
+          "detail": "Permissions policy missing",
+          "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+        }
+      ],
+      "headers": {
+        "Connection": "keep-alive",
+        "Content-Length": "5254",
+        "Server": "GitHub.com",
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Strict-Transport-Security": "max-age=31556952",
+        "ETag": "W/\"6a63df5d-24a3\"",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'",
+        "Content-Encoding": "gzip",
+        "x-proxy-cache": "MISS",
+        "X-GitHub-Request-Id": "3236:3B925F:1EACBC9:1ED9CED:6A66D4C2",
+        "Accept-Ranges": "bytes",
+        "Date": "Mon, 27 Jul 2026 03:47:15 GMT",
+        "Via": "1.1 varnish",
+        "Age": "0",
+        "X-Served-By": "cache-fra-eddf8230173-FRA",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1785124035.932254,VS0,VE89",
+        "Vary": "Accept-Encoding",
+        "X-Fastly-Request-ID": "26b2d1e60e1874fa18343ac68c4ac5781de432ef"
+      }
+    }
+  ],
+  "security_findings": [
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.env",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/.env"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/.env"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/phpinfo.php",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/phpinfo.php"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "detail": "CSP missing",
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Content-Security-Policy",
+      "risk": "CSP missing",
+      "fix": "Add: Content-Security-Policy policy",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "detail": "CSP missing",
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Content-Security-Policy",
+      "risk": "CSP missing",
+      "fix": "Add: Content-Security-Policy policy",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/phpinfo.php"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/wp-config.php",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/wp-config.php"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/.well-known/security.txt"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.well-known/security.txt",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/.well-known/security.txt"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/wp-config.php"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/actuator/health",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/actuator/health"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/.git/config"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/server-status",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/server-status"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/server-status"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "detail": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.git/config",
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "http://trintechdigitaldefense.github.io:80/.git/config"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "detail": "Clickjacking risk",
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "detail": "MIME sniffing risk",
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "detail": "XSS header missing",
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "detail": "Referrer policy missing",
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "detail": "Permissions policy missing",
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "header": "X-Frame-Options",
+      "risk": "Clickjacking risk",
+      "fix": "Add: X-Frame-Options DENY",
+      "severity": "LOW"
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "risk": "MIME sniffing risk",
+      "fix": "Add: X-Content-Type-Options nosniff",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "X-XSS-Protection",
+      "risk": "XSS header missing",
+      "fix": "Add: X-XSS-Protection 1; mode=block",
+      "severity": "MEDIUM"
+    },
+    {
+      "header": "Referrer-Policy",
+      "risk": "Referrer policy missing",
+      "fix": "Add: Referrer-Policy strict-origin-when-cross-origin",
+      "severity": "LOW"
+    },
+    {
+      "header": "Permissions-Policy",
+      "risk": "Permissions policy missing",
+      "fix": "Add: Permissions-Policy camera=(), microphone=()",
+      "severity": "LOW"
+    },
+    {
+      "severity": "LOW",
+      "title": "Info Disclosure",
+      "detail": "Server disclosed: GitHub.com",
+      "url": "https://trintechdigitaldefense.github.io:443/actuator/health"
+    }
+  ],
+  "summary": {
+    "total_endpoints": 16,
+    "total_findings": 188,
+    "critical": 0,
+    "high": 0,
+    "medium": 72,
+    "low": 116
+  }
+}

@@ -1,0 +1,2589 @@
+{
+  "timestamp": "2026-07-27T03:36:46.330653",
+  "target": "trintechdigitaldefense.github.io",
+  "total_findings": 368,
+  "findings": [
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.env",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.env",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/wp-admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/wp-admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/phpinfo.php",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/phpinfo.php",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/api",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/api",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/api",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/api",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/wp-admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/wp-admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/admin",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/phpinfo.php",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/phpinfo.php",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/login",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/login",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.env",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/.env",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/login",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/login",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service running on plaintext HTTP: http://trintechdigitaldefense.github.io:80/",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS using HSTS"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-Content-Type-Options",
+      "description": "MIME sniffing risk",
+      "port": null,
+      "remediation": "Add: X-Content-Type-Options nosniff"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Missing: X-XSS-Protection",
+      "description": "XSS header missing",
+      "port": null,
+      "remediation": "Add: X-XSS-Protection 1; mode=block"
+    },
+    {
+      "severity": "MEDIUM",
+      "title": "Unencrypted HTTP",
+      "description": "Service on plaintext HTTP: http://trintechdigitaldefense.github.io:80/",
+      "port": null,
+      "remediation": "Redirect all traffic to HTTPS"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: X-Frame-Options",
+      "description": "Clickjacking risk",
+      "port": null,
+      "remediation": "Add: X-Frame-Options DENY"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Content-Security-Policy",
+      "description": "CSP missing",
+      "port": null,
+      "remediation": "Add: Content-Security-Policy policy"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Referrer-Policy",
+      "description": "Referrer policy missing",
+      "port": null,
+      "remediation": "Add: Referrer-Policy strict-origin-when-cross-origin"
+    },
+    {
+      "severity": "LOW",
+      "title": "Missing: Permissions-Policy",
+      "description": "Permissions policy missing",
+      "port": null,
+      "remediation": "Add: Permissions-Policy camera=(), microphone=()"
+    }
+  ],
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 160,
+    "low": 208
+  }
+}
