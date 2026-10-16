@@ -1,3 +1,5 @@
+> **Superseded** — maintained for reference. Active platform: fortifyone (audit) / CyberGuardian + CyberFortress (defense).
+
 # TrinTech Digital Defense — Full Network Audit Suite
 
 > **DEFEND. DETECT. DOMINATE.**
@@ -93,18 +95,6 @@ trintech-audit/
 - **nmap** — Port scanning (system package, `apt install nmap`)
 - **whois** — WHOIS lookup (system package, `apt install whois`)
 - **dig/host** — DNS queries (system package, `apt install dnsutils`)
-
-## How It Differs From Other Tools
-
-| | TrinTech Audit | Nmap | Nikto | Burp |
-|---|---|---|---|---|
-| Port scanning | ✅ | ✅ | ❌ | ❌ |
-| Web vulns | ✅ | ❌ | ✅ | ✅ |
-| OSINT | ✅ | ❌ | ❌ | ❌ |
-| SSL/TLS check | ✅ | ✅ | ❌ | ❌ |
-| DNS enumeration | ✅ | ❌ | ❌ | ❌ |
-| **PDF report** | **✅** | ❌ | ❌ | ❌ |
-| **Client-ready** | **✅** | ❌ | ❌ | ❌ |
 
 ## Service Pricing Alignment
 
